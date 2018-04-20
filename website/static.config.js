@@ -7,7 +7,8 @@ export default {
 	getRoutes: async () => {
 		const {
 			data: posts
-		} = await axios.get('https://jsonplaceholder.typicode.com/posts')
+		} = await axios.get('https://jsonplaceholder.typicode.com/posts');
+
 		return [{
 				path: '/',
 				component: 'src/js/containers/Home',
@@ -37,6 +38,6 @@ export default {
 				is404: true,
 				component: 'src/js/containers/404',
 			},
-		]
+		];
 	},
 }
