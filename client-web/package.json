@@ -18,7 +18,8 @@
     "react-hot-loader": "^4.1.1",
     "react-router": "^4.2.0",
     "react-static": "^5.8.1",
-    "react-static-routes": "^1.0.0"
+    "react-static-routes": "^1.0.0",
+    "tailwindcss": "^0.5.2"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",

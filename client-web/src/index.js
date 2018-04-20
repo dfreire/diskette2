@@ -1,8 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import App from './js/App';
+import 'tailwindcss/dist/tailwind.min.css';
 import './index.css';
+import App from './js/App';
 
 export default App
 
