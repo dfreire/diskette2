@@ -4,8 +4,5 @@
     "outDir": "out",
     "module": "commonjs",
     "moduleResolution": "node"
-  },
-  "include": [
-    "src/**/*"
-  ]
+  }
 }
