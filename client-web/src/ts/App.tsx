@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Router, Link } from 'react-static';
+import { withSiteData, Router, Link } from 'react-static';
 import { hot } from 'react-hot-loader';
 import Routes from 'react-static-routes';
+import { SiteData } from './common/Types';
 
-const App = () => (
+const App = withSiteData((props: SiteData) => (
 	<div className="container mx-auto bg-white rounded overflow-hidden shadow-md">
-		<div className="bg-black text-white p-4"><h2>Diskette</h2></div>
+		<div className="bg-black text-white p-4"><h2>{props.title}</h2></div>
 		<Router>
 			<div>
 				<div className="content">
@@ -19,6 +20,6 @@ const App = () => (
 			</div>
 		</Router>
 	</div>
-);
+));
 
 export default hot(module)(App);

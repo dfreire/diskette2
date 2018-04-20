@@ -1,8 +1,13 @@
 import * as React from 'react';
-import { withSiteData } from 'react-static';
+import { withRouteData } from 'react-static';
+import { SiteData } from '../common/Types';
 
-export default withSiteData(() => (
+interface Props extends SiteData {
+	pageTitle: 'Home',
+}
+
+export default withRouteData((props: Props) => (
 	<div>
-		<h1 style={{ textAlign: 'center' }}>Welcome to</h1>
+		<h1 style={{ textAlign: 'center' }}>Welcome to {props.title} {props.pageTitle}</h1>
 	</div>
-))
+));
