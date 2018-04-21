@@ -9,9 +9,9 @@ const AnotherView = (props: AnotherProps) => (
     <div>
         <h2>AnotherView</h2>
         <div>{props.y}</div>
-        <div><button onClick={() => props.decrement()}>inc</button></div>
-        <div><button onClick={() => props.decrement2()}>inc2</button></div>
-        <div><button onClick={() => props.decrementAsync()}>incAsync</button></div>
+        <div><button onClick={() => props.decrement()}>dec</button></div>
+        <div><button onClick={() => props.decrement2()}>dec2</button></div>
+        <div><button onClick={() => props.decrementAsync()}>decAsync</button></div>
     </div>
 );
 

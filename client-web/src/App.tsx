@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withRouter, Route, Link } from 'react-router-dom';
+import { withRouter, Link, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ExampleView from './pages/Example';
 import AnotherView from './pages/Another';
@@ -24,9 +24,10 @@ class App extends React.Component<Props, {}> {
 				</ul>
 
 				<hr />
-
-				<Route exact path="/" component={ExampleView} />
-				<Route path="/another" component={AnotherView} />
+				<Switch>
+					<Route exact path="/" component={ExampleView} />
+					<Route path="/another" component={AnotherView} />
+				</Switch>
 			</div>
 		);
 	}
