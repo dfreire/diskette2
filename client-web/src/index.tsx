@@ -1,12 +1,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import 'tailwindcss/dist/tailwind.min.css';
-import App from './App';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
+import { Provider } from 'react-redux';
+import store from './store';
+import App from './App';
 
 ReactDOM.render(
-	<App />,
+	<Provider store={store}>
+		<App />
+	</Provider>,
 	document.getElementById('root') as HTMLElement
 );
+
 registerServiceWorker();
