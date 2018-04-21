@@ -7,6 +7,7 @@ interface ExampleProps extends Example.Props, Example.Actions {
 
 const ExampleView = (props: ExampleProps) => (
     <div>
+        {console.log('ExampleView', props) && false}
         <h2>ExampleView</h2>
         <div>{props.x}</div>
         <div><button onClick={() => props.increment()}>inc</button></div>
@@ -15,16 +16,6 @@ const ExampleView = (props: ExampleProps) => (
     </div>
 );
 
-const mapState = (models: { example: Example.Props }) => {
-    return {
-        ...models.example,
-    };
-}
-
-const mapDispatch = (models: { example: Example.Actions }) => {
-    return {
-        ...models.example,
-    } as any;
-}
-
+const mapState = (models: { example: Example.Props }) => ({ ...models.example });
+const mapDispatch = (models: { example: Example.Actions }) => ({ ...models.example }) as any;
 export default connect(mapState, mapDispatch)(ExampleView) as any;

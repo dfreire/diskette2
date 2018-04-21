@@ -33,19 +33,6 @@ class App extends React.Component<Props, {}> {
 	}
 }
 
-const mapState = (models: { example: Example.Props, another: Another.Props }) => {
-	return {
-		...models.example,
-		...models.another,
-	};
-}
-
-const mapDispatch = (models: { example: Example.Actions, another: Another.Actions }) => {
-	return {
-		...models.example,
-		...models.another,
-	} as any;
-}
-
-// export default connect(mapState, mapDispatch)(App) as any;
+const mapState = (models: {}) => ({});
+const mapDispatch = (models: {}) => ({});
 export default withRouter(connect(mapState, mapDispatch)(App) as any);

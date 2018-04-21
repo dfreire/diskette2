@@ -7,6 +7,7 @@ interface AnotherProps extends Another.Props, Another.Actions {
 
 const AnotherView = (props: AnotherProps) => (
     <div>
+        {console.log('AnotherView', props) && false}
         <h2>AnotherView</h2>
         <div>{props.y}</div>
         <div><button onClick={() => props.decrement()}>dec</button></div>
@@ -15,16 +16,6 @@ const AnotherView = (props: AnotherProps) => (
     </div>
 );
 
-const mapState = (models: { another: Another.Props }) => {
-    return {
-        ...models.another,
-    };
-}
-
-const mapDispatch = (models: { another: Another.Actions }) => {
-    return {
-        ...models.another,
-    } as any;
-}
-
+const mapState = (models: { another: Another.Props }) => ({ ...models.another });
+const mapDispatch = (models: { another: Another.Actions }) => ({ ...models.another }) as any;
 export default connect(mapState, mapDispatch)(AnotherView) as any;
