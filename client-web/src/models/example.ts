@@ -1,14 +1,14 @@
-export interface Props {
-    x: number;
-}
-
-type State = Props;
-
 export interface Actions {
     increment: { (): void };
     increment2: { (): void };
     incrementAsync: { (): void };
 };
+
+export interface Props {
+    x: number;
+}
+
+type State = Props;
 
 const INITIAL_STATE: State = {
     x: 0,
@@ -30,9 +30,13 @@ const effects = {
         console.log('incrementAsync rootState', rootState);
         console.log('incrementAsync this', this);
         await new Promise(resolve => setTimeout(resolve, 1000));
-        ((this as any) as Actions).increment();
+        actions(this).increment();
     },
 };
+
+function actions(that: any) {
+    return (that as any) as Actions;
+}
 
 export const example = {
     state: { ...INITIAL_STATE },

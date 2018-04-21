@@ -1,14 +1,14 @@
-export interface Props {
-    y: number;
-}
-
-type State = Props;
-
 export interface Actions {
     decrement: { (): void };
     decrement2: { (): void };
     decrementAsync: { (): void };
 };
+
+export interface Props {
+    y: number;
+}
+
+type State = Props;
 
 const INITIAL_STATE: State = {
     y: 100,
@@ -30,9 +30,13 @@ const effects = {
         console.log('decrementAsync rootState', rootState);
         console.log('decrementAsync this', this);
         await new Promise(resolve => setTimeout(resolve, 1000));
-        ((this as any) as Actions).decrement();
+        actions(this).decrement();
     },
 };
+
+function actions(that: any) {
+    return (that as any) as Actions;
+}
 
 export const another = {
     state: { ...INITIAL_STATE },
