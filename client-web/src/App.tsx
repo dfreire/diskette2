@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { withRouter, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import ExampleView from './pages/Example';
+import AnotherView from './pages/Another';
 import * as Example from './models/example';
 import * as Another from './models/another';
 
@@ -10,20 +13,20 @@ class App extends React.Component<Props, {}> {
 	render() {
 		console.log('App', this.props);
 		return (
-			<div className="App">
-				<header className="App-header">
-					<h1 className="App-title">Welcome to React</h1>
-				</header>
+			<div>
+				<ul>
+					<li>
+						<Link to="/">ExampleView</Link>
+					</li>
+					<li>
+						<Link to="/another">AnotherView</Link>
+					</li>
+				</ul>
 
-				<div>{this.props.x}</div>
-				<div><button onClick={() => this.props.increment()}>inc</button></div>
-				<div><button onClick={() => this.props.increment2()}>inc2</button></div>
-				<div><button onClick={() => this.props.incrementAsync()}>incAsync</button></div>
+				<hr />
 
-				<div>{this.props.y}</div>
-				<div><button onClick={() => this.props.decrement()}>dec</button></div>
-				<div><button onClick={() => this.props.decrement2()}>dec2</button></div>
-				<div><button onClick={() => this.props.decrementAsync()}>decAsync</button></div>
+				<Route exact path="/" component={ExampleView} />
+				<Route path="/another" component={AnotherView} />
 			</div>
 		);
 	}
@@ -43,4 +46,5 @@ const mapDispatch = (models: { example: Example.Actions, another: Another.Action
 	} as any;
 }
 
-export default connect(mapState, mapDispatch)(App) as any;
+// export default connect(mapState, mapDispatch)(App) as any;
+export default withRouter(connect(mapState, mapDispatch)(App) as any);

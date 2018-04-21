@@ -9,6 +9,7 @@
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "react-scripts-ts": "2.15.1",
     "redux": "^4.0.0",
     "tailwindcss": "^0.5.2"
@@ -27,6 +28,7 @@
     "@types/react-dom": "^16.0.5",
     "@types/react-redux": "^5.0.16",
     "@types/react-router": "^4.0.23",
+    "@types/react-router-dom": "^4.2.6",
     "@types/redux": "^3.6.0",
     "typescript": "^2.8.3"
   }
