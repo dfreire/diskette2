@@ -1,38 +1,44 @@
 import * as React from 'react';
-import { withRouter, Link, Switch, Route } from 'react-router-dom';
+import { withRouter, Link, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import ExampleView from './pages/Example';
-import AnotherView from './pages/Another';
-import * as Example from './models/example';
-import * as Another from './models/another';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import * as UserModel from './models/User';
 
-interface Props extends Example.State, Example.Actions, Another.State, Another.Actions {
+interface Props extends UserModel.State, UserModel.Dispatch {
 }
 
 class App extends React.Component<Props, {}> {
 	render() {
 		console.log('App', this.props);
+		const isLoggedIn = this.props.sessionToken.length > 0;
+		const isLoggedOut = !isLoggedIn;
+
 		return (
 			<div>
 				<ul>
-					<li>
-						<Link to="/">ExampleView</Link>
-					</li>
-					<li>
-						<Link to="/another">AnotherView</Link>
-					</li>
+					<li><Link to="/login">Login</Link></li>
+					<li><Link to="/home">Home</Link></li>
 				</ul>
 
 				<hr />
 				<Switch>
-					<Route exact path="/" component={ExampleView} />
-					<Route path="/another" component={AnotherView} />
+					{isLoggedIn && <Route path="/home" component={Home} />}
+					{isLoggedIn && <Redirect to="/home" />};
+
+					{isLoggedOut && <Route path="/login" component={Login} />}
+					{isLoggedOut && <Redirect to="/login" />};
 				</Switch>
 			</div>
 		);
 	}
 }
 
-const mapState = (models: {}) => ({});
-const mapDispatch = (models: {}) => ({});
+const mapState = (models: { user: UserModel.State }) => ({
+	sessionToken: models.user.sessionToken,
+});
+
+const mapDispatch = (models: { user: UserModel.Dispatch }) => ({
+});
+
 export default withRouter(connect(mapState, mapDispatch)(App) as any);
