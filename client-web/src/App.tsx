@@ -6,7 +6,7 @@ import AnotherView from './pages/Another';
 import * as Example from './models/example';
 import * as Another from './models/another';
 
-interface Props extends Example.Props, Example.Actions, Another.Props, Another.Actions {
+interface Props extends Example.State, Example.Actions, Another.State, Another.Actions {
 }
 
 class App extends React.Component<Props, {}> {

@@ -4,11 +4,9 @@ export interface Actions {
     decrementAsync: { (): void };
 };
 
-export interface Props {
+export interface State {
     y: number;
 }
-
-type State = Props;
 
 const INITIAL_STATE: State = {
     y: 100,

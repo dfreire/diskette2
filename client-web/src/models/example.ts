@@ -4,12 +4,9 @@ export interface Actions {
     incrementAsync: { (): void };
 };
 
-export interface Props {
+export interface State {
     x: number;
 }
-
-type State = Props;
-
 const INITIAL_STATE: State = {
     x: 0,
 };

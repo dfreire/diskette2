@@ -2,10 +2,10 @@ import * as React from 'react';
 import * as Example from '../models/example';
 import { connect } from 'react-redux';
 
-interface ExampleProps extends Example.Props, Example.Actions {
+interface Props extends Example.State, Example.Actions {
 }
 
-const ExampleView = (props: ExampleProps) => (
+const ExampleView = (props: Props) => (
     <div>
         {console.log('ExampleView', props) && false}
         <h2>ExampleView</h2>
@@ -16,6 +16,6 @@ const ExampleView = (props: ExampleProps) => (
     </div>
 );
 
-const mapState = (models: { example: Example.Props }) => ({ ...models.example });
+const mapState = (models: { example: Example.State }) => ({ ...models.example });
 const mapDispatch = (models: { example: Example.Actions }) => ({ ...models.example }) as any;
 export default connect(mapState, mapDispatch)(ExampleView) as any;
