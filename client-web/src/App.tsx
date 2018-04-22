@@ -12,24 +12,30 @@ class App extends React.Component<Props, {}> {
 	render() {
 		console.log('App', this.props);
 		const isLoggedIn = this.props.sessionToken.length > 0;
-		const isLoggedOut = !isLoggedIn;
+		return isLoggedIn ? this._renderLoggedIn() : this._renderLoggedOut();
+	}
 
+	_renderLoggedIn() {
 		return (
 			<div>
 				<ul>
 					<li><Link to="/login">Login</Link></li>
 					<li><Link to="/home">Home</Link></li>
 				</ul>
-
-				<hr />
 				<Switch>
-					{isLoggedIn && <Route path="/home" component={Home} />}
-					{isLoggedIn && <Redirect to="/home" />};
-
-					{isLoggedOut && <Route path="/login" component={Login} />}
-					{isLoggedOut && <Redirect to="/login" />};
+					<Route path="/home" component={Home} />
+					<Redirect to="/home" />
 				</Switch>
 			</div>
+		);
+	}
+
+	_renderLoggedOut() {
+		return (
+			<Switch>
+				<Route path="/login" component={Login} />
+				<Redirect to="/login" />
+			</Switch>
 		);
 	}
 }
