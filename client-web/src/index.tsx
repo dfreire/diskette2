@@ -5,8 +5,11 @@ import 'tailwindcss/dist/tailwind.min.css';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
-import store from './store';
+import { init } from '@rematch/core';
+import * as models from './models';
 import App from './App';
+
+const store = init({ models });
 
 ReactDOM.render(
 	<Provider store={store}>
