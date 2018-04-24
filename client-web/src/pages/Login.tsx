@@ -21,4 +21,4 @@ const mapDispatch = (models: { user: UserModel.Dispatch }) => ({
     login: models.user.login
 }) as any;
 
-export default connect(mapState, mapDispatch)(Login) as any;
+export default connect(mapState, mapDispatch)(Login);

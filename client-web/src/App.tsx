@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import * as UserModel from './models/User';
 
-interface Props extends UserModel.State, UserModel.Dispatch {
+interface Props extends UserModel.State {
 }
 
 class App extends React.Component<Props, {}> {
@@ -44,7 +44,4 @@ const mapState = (models: { user: UserModel.State }) => ({
 	sessionToken: models.user.sessionToken,
 });
 
-const mapDispatch = (models: { user: UserModel.Dispatch }) => ({
-});
-
-export default withRouter(connect(mapState, mapDispatch)(App) as any);
+export default withRouter(connect(mapState)(App) as any);
