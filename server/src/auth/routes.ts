@@ -3,17 +3,18 @@ import * as jwt from 'jsonwebtoken';
 import config from '../common/config';
 import { encrypt, sha1 } from 'crypto-buddy';
 import * as usersModel from '../users/model';
+import { Session } from './model';
 
 const router = Router();
 
 router.post('/login', (req, res) => {
     const { email } = req.body;
-    const decoded = {
+    const session: Session = {
         id: encrypt(config.DK_ENCRYPTION_KEY, sha1(email)),
     };
-    const token = jwt.sign(decoded, config.DK_JWT_SECRET, { expiresIn: '1h' });
+    const sessionToken = jwt.sign(session, config.DK_JWT_SECRET, { expiresIn: '1h' });
 
-    res.send(token);
+    res.send(sessionToken);
 });
 
 export default router;
