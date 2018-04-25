@@ -1,12 +1,12 @@
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import * as prompts from 'prompts';
-import * as usersModel from '../model';
+import * as model from '../model';
 
 async function run() {
-    const { email, password } = await prompts([{
+    const { currentEmail, newPassword } = await prompts([{
         type: 'text',
-        name: 'email',
+        name: 'currentEmail',
         message: 'current email'
     }, {
         type: 'password',
@@ -14,7 +14,7 @@ async function run() {
         message: 'new password'
     }]);
 
-    await usersModel.updatePassword(email, password);
+    await model.setPassword(currentEmail, newPassword);
 }
 
 run();

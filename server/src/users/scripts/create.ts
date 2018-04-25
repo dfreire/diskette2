@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import * as prompts from 'prompts';
-import * as usersModel from '../model';
+import * as model from '../model';
 
 async function run() {
     const { email, password } = await prompts([{
@@ -14,7 +14,7 @@ async function run() {
         message: 'password'
     }]);
 
-    await usersModel.create(email, password);
+    await model.create(email, password);
 }
 
 run();

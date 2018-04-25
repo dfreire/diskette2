@@ -21,17 +21,17 @@ export async function create(email: string, password: string) {
     await save(user);
 }
 
-export async function updateEmail(oldEmail: string, newEmail: string) {
-    const user: User = await getByEmail(oldEmail);
+export async function setEmail(currentEmail: string, newEmail: string) {
+    const user: User = await getByEmail(currentEmail);
     user.email = newEmail;
     await save(user);
 
-    const oldFile = path.join(USERS_DIR, `${sha1(oldEmail)}.json`);
+    const oldFile = path.join(USERS_DIR, `${sha1(currentEmail)}.json`);
     await fs.remove(oldFile);
 }
 
-export async function updatePassword(email: string, newPassword: string) {
-    const user: User = await getByEmail(email);
+export async function setPassword(currentEmail: string, newPassword: string) {
+    const user: User = await getByEmail(currentEmail);
     user.passHash = hashPass(newPassword);
     await save(user);
 }
