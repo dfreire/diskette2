@@ -3,8 +3,8 @@ import * as fs from 'fs-extra';
 import { Router } from 'express';
 import * as multer from 'multer';
 import * as slug from 'slugg';
-import { authenticate } from '../auth/middleware';
 import config from '../common/config';
+import { authenticate } from '../users/middleware';
 
 fs.mkdirpSync(config.DK_UPLOAD_DIR);
 const upload = multer({ dest: config.DK_UPLOAD_DIR });
@@ -17,8 +17,8 @@ router.post('/*', authenticate, upload.array('files'), async (req, res) => {
 	for (let file of req.files as Express.Multer.File[]) {
 		const tokens = file.originalname.split('.');
 		const name = slug(tokens[0]);
-        const ext = slug(tokens[1]);
-        await fs.move(file.path, path.join(config.DK_CONTENT_DIR, pathname, `${name}.${ext}`))
+		const ext = slug(tokens[1]);
+		await fs.move(file.path, path.join(config.DK_CONTENT_DIR, pathname, `${name}.${ext}`))
 	}
 
 	res.send();

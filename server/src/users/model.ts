@@ -11,6 +11,10 @@ export interface User {
     passHash: string;
 }
 
+export interface Session {
+    id: string;
+}
+
 export async function create(email: string, password: string) {
     const user: User = {
         email,

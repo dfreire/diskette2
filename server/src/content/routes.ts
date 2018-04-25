@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import * as multer from 'multer';
 import * as slug from 'slugg';
-import { authenticate } from '../auth/middleware';
+import { authenticate } from '../users/middleware';
 import * as model from './model';
 import config from '../common/config';
 

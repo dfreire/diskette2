@@ -1,9 +1,6 @@
 import * as http from 'http';
 import * as express from 'express';
-import { Bearer } from 'permit';
 import config from './common/config';
-import { authenticate } from './auth/middleware';
-import authRouter from './auth/routes';
 import usersRouter from './users/routes';
 import contentRouter from './content/routes';
 import typesRouter from './types/routes';
@@ -11,11 +8,10 @@ import uploadRouter from './upload/routes';
 
 const app = express();
 app.use(express.json());
-app.use('/auth', authRouter);
-app.use('/users', usersRouter);
-app.use('/content', contentRouter);
-app.use('/types', typesRouter);
-app.use('/upload', uploadRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/content', contentRouter);
+app.use('/api/types', typesRouter);
+app.use('/api/upload', uploadRouter);
 
 const server = http.createServer(app);
 server.listen(config.DK_PORT);
