@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { logout } from './util';
 
 export interface State {
     sessionToken: string;
@@ -46,20 +47,23 @@ const reducers = {
 
 const effects = {
     async login(payload: {}, rootState: { user: State }) {
-        const { email, password } = rootState.user.loginPage;
-        const res = await axios.post('/api/users/login', { email, password });
-        if (res.status === 200) {
-            const sessionToken = res.data;
-            localStorage.setItem('sessionToken', sessionToken);
-            window.location.href = '/home';
-        } else {
+        try {
+            const { email, password } = rootState.user.loginPage;
+            const res = await axios.post('/api/users/login', { email, password });
+            if (res.status === 200) {
+                const sessionToken = res.data;
+                localStorage.setItem('sessionToken', sessionToken);
+                window.location.href = '/home';
+            }
+        } catch (err) {
+            console.error(err);
+            console.log('err.response', err.response);
             dispath(this).onLoginError();
         }
     },
 
     logout(payload: {}, rootState: { user: State }) {
-        localStorage.removeItem('sessionToken');
-        window.location.href = '/login';
+        logout();
     },
 };
 

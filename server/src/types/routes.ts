@@ -8,7 +8,7 @@ router.get('/:id', authenticate, async (req, res) => {
     try {
         const id = req.params.id;
         const contentType = await model.getById(id);
-        res.sendStatus(200).json(contentType);
+        res.json(contentType);
     } catch (err) {
         console.error(err);
         res.sendStatus(500);

@@ -11,7 +11,7 @@ router.get('/*', authenticate, async (req, res) => {
     try {
         const location = req.params[0];
         const content = await model.getByLocation(location);
-        res.sendStatus(200).json(content);
+        res.json(content);
     } catch (err) {
         console.error(err);
         res.sendStatus(500);
