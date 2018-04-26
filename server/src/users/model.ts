@@ -44,9 +44,14 @@ export async function getByEmail(email: string): Promise<User> {
 }
 
 export async function getByEmailSha1(emailSha1: String): Promise<User> {
-    const file = path.join(config.DK_USERS_DIR, `${emailSha1}.json`);
-    const user: User = await readJson(file);
-    return user;
+    try {
+        const file = path.join(config.DK_USERS_DIR, `${emailSha1}.json`);
+        const user: User = await readJson(file);
+        return user;
+    } catch (err) {
+        return undefined;
+    }
+
 }
 
 async function save(user: User) {

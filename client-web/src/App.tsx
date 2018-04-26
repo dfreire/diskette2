@@ -6,7 +6,7 @@ import Content from './pages/Content';
 import Login from './pages/Login';
 import * as UserModel from './models/User';
 
-interface Props extends UserModel.State {
+interface Props extends UserModel.State, UserModel.Dispatch {
 }
 
 class App extends React.Component<Props, {}> {
@@ -16,8 +16,9 @@ class App extends React.Component<Props, {}> {
 
 		return (
 			<div className={`container mx-auto bg-white rounded overflow-hidden shadow-lg ${widthClass} font-sans`}>
-				<div className="bg-black text-white p-4">
-					<h2>Diskette</h2>
+				<div className="flex bg-black">
+					<div className="flex-1 text-white p-4"><h2>Diskette</h2></div>
+					{isLoggedIn && this._renderLogout()}
 				</div>
 				{isLoggedIn ? this._renderLoggedIn() : this._renderLoggedOut()}
 			</div>
@@ -38,6 +39,19 @@ class App extends React.Component<Props, {}> {
 		);
 	}
 
+	_renderLogout() {
+		return (
+			<div className="">
+				<button
+					className="rounded-bl text-grey hover:bg-grey-darkest hover:text-white font-thin p-2 w-8 font-mono"
+					onClick={this.props.logout}
+				>
+					x
+			</button>
+			</div>
+		);
+	}
+
 	_renderLoggedOut() {
 		return (
 			<div className="p-4">
@@ -54,4 +68,8 @@ const mapState = (models: { user: UserModel.State }) => ({
 	sessionToken: models.user.sessionToken,
 });
 
-export default withRouter(connect(mapState)(App) as any);
+const mapDispatch = (models: { user: UserModel.Dispatch }) => ({
+	logout: models.user.logout
+}) as any;
+
+export default withRouter(connect(mapState, mapDispatch)(App) as any);

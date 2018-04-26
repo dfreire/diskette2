@@ -29,5 +29,10 @@
     "@types/react-router-dom": "^4.2.6",
     "@types/redux": "^3.6.0",
     "typescript": "^2.8.3"
+  },
+  "proxy": {
+    "api": {
+      "target": "http://localhost:3500"
+    }
   }
 }

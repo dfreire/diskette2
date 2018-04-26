@@ -5,7 +5,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
-    "crypto-buddy": "0.2.4",
+    "crypto-buddy": "0.3.1",
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "fs-extra": "^5.0.0",

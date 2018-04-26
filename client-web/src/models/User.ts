@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export interface State {
     sessionToken: string;
 
@@ -45,14 +47,14 @@ const reducers = {
 const effects = {
     async login(payload: {}, rootState: { user: State }) {
         const { email, password } = rootState.user.loginPage;
-        console.log({ email, password })
-        // if (email === 'admin' && password === 'admin') {
-        // const sessionToken = 'admin-session';
-        // localStorage.setItem('sessionToken', sessionToken);
-        // window.location.href = '/home';
-        // } else {
-        //     dispath(this).onLoginError();
-        // }
+        const res = await axios.post('/api/users/login', { email, password });
+        if (res.status === 200) {
+            const sessionToken = 'admin-session';
+            localStorage.setItem('sessionToken', sessionToken);
+            window.location.href = '/home';
+        } else {
+            dispath(this).onLoginError();
+        }
     },
 
     logout(payload: {}, rootState: { user: State }) {
@@ -61,9 +63,9 @@ const effects = {
     },
 };
 
-// function dispath(that: any) {
-//     return (that as any) as Dispatch;
-// }
+function dispath(that: any) {
+    return (that as any) as Dispatch;
+}
 
 export const user = {
     state: { ...INITIAL_STATE },
