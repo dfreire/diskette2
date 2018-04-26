@@ -9,6 +9,8 @@ export interface State {
 }
 
 export interface Dispatch {
+    onLoginPageChangeField: { (payload: { key: 'email' | 'password', value: string }): void };
+
     login: { (): void };
     onLoginError: { (): void };
 
@@ -26,6 +28,13 @@ const INITIAL_STATE: State = {
 };
 
 const reducers = {
+    onLoginPageChangeField(state: State, payload: { key: 'email' | 'password', value: string }): State {
+        const { key, value } = payload;
+        const loginPage = { ...state.loginPage };
+        loginPage[key] = value;
+        return { ...state, loginPage };
+    },
+
     onLoginError(state: State): State {
         const loginPage = { ...state.loginPage };
         loginPage.errorMessage = 'Access Denied';
@@ -35,12 +44,12 @@ const reducers = {
 
 const effects = {
     async login(payload: {}, rootState: { user: State }) {
-        console.log('login');
-        // const { email, password } = rootState.user.loginPage;
+        const { email, password } = rootState.user.loginPage;
+        console.log({ email, password })
         // if (email === 'admin' && password === 'admin') {
-        const sessionToken = 'admin-session';
-        localStorage.setItem('sessionToken', sessionToken);
-        window.location.href = '/home';
+        // const sessionToken = 'admin-session';
+        // localStorage.setItem('sessionToken', sessionToken);
+        // window.location.href = '/home';
         // } else {
         //     dispath(this).onLoginError();
         // }

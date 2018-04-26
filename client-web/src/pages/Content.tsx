@@ -5,10 +5,10 @@ import * as UserModel from '../models/User';
 interface Props extends UserModel.Dispatch {
 }
 
-const Home = (props: Props) => (
+const Content = (props: Props) => (
     <div>
-        {console.log('Home', props) && false}
-        <h2>Home</h2>
+        {console.log('Content', props) && false}
+        <h2>Content</h2>
         <button onClick={props.logout}>Logout</button>
     </div>
 );
@@ -20,4 +20,4 @@ const mapDispatch = (models: { user: UserModel.Dispatch }) => ({
     logout: models.user.logout
 }) as any;
 
-export default connect(mapState, mapDispatch)(Home);
+export default connect(mapState, mapDispatch)(Content);

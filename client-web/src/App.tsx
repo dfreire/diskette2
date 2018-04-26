@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { withRouter, Link, Switch, Route, Redirect } from 'react-router-dom';
+import { withRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Home from './pages/Home';
+import Breadcrumb from './Breadcrumb';
+import Content from './pages/Content';
 import Login from './pages/Login';
 import * as UserModel from './models/User';
 
@@ -10,32 +11,41 @@ interface Props extends UserModel.State {
 
 class App extends React.Component<Props, {}> {
 	render() {
-		console.log('App', this.props);
 		const isLoggedIn = this.props.sessionToken.length > 0;
-		return isLoggedIn ? this._renderLoggedIn() : this._renderLoggedOut();
+		const widthClass = isLoggedIn ? 'max-w-lg' : 'max-w-xs';
+
+		return (
+			<div className={`container mx-auto bg-white rounded overflow-hidden shadow-lg ${widthClass} font-sans`}>
+				<div className="bg-black text-white p-4">
+					<h2>Diskette</h2>
+				</div>
+				{isLoggedIn ? this._renderLoggedIn() : this._renderLoggedOut()}
+			</div>
+		);
 	}
 
 	_renderLoggedIn() {
 		return (
 			<div>
-				<ul>
-					<li><Link to="/login">Login</Link></li>
-					<li><Link to="/home">Home</Link></li>
-				</ul>
-				<Switch>
-					<Route path="/home" component={Home} />
-					<Redirect to="/home" />
-				</Switch>
+				<Breadcrumb />
+				<div className="p-4">
+					<Switch>
+						<Route path="/content" component={Content} />
+						<Redirect to="/content" />
+					</Switch>
+				</div>
 			</div>
 		);
 	}
 
 	_renderLoggedOut() {
 		return (
-			<Switch>
-				<Route path="/login" component={Login} />
-				<Redirect to="/login" />
-			</Switch>
+			<div className="p-4">
+				<Switch>
+					<Route path="/login" component={Login} />
+					<Redirect to="/login" />
+				</Switch>
+			</div>
 		);
 	}
 }
