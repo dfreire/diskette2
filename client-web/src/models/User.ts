@@ -49,7 +49,7 @@ const effects = {
         const { email, password } = rootState.user.loginPage;
         const res = await axios.post('/api/users/login', { email, password });
         if (res.status === 200) {
-            const sessionToken = 'admin-session';
+            const sessionToken = res.data;
             localStorage.setItem('sessionToken', sessionToken);
             window.location.href = '/home';
         } else {

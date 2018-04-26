@@ -1,21 +1,30 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import * as UserModel from '../models/User';
+import * as ContentModel from '../models/Content';
 
-interface Props {
+interface Props extends ContentModel.State, ContentModel.Dispatch {
 }
 
-const Content = (props: Props) => (
-    <div>
-        {console.log('Content', props) && false}
-        <h2>Content</h2>
-    </div>
-);
+class Content extends React.Component<Props, {}> {
+    render() {
+        return (
+            <div>
+                {console.log('Content', this.props) && false}
+                <h2>Content</h2>
+            </div>
+        );
+    }
 
-const mapState = (models: { user: UserModel.State }) => ({
+    componentDidMount() {
+        this.props.onLoad();
+    }
+}
+
+const mapState = (models: { content: ContentModel.State }) => ({
 });
 
-const mapDispatch = (models: { user: UserModel.Dispatch }) => ({
+const mapDispatch = (models: { content: ContentModel.Dispatch }) => ({
+    onLoad: models.content.onLoad,
 }) as any;
 
 export default connect(mapState, mapDispatch)(Content);
