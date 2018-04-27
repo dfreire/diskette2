@@ -8,7 +8,7 @@ interface Props extends UserModel.State, UserModel.Dispatch {
 }
 
 const Login = (props: Props) => (
-    <div className="p-2">
+    <div className="p-4">
         {console.log('Login', props) && false}
         <form>
             <EmailField

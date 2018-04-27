@@ -29,12 +29,10 @@ class App extends React.Component<Props, {}> {
 		return (
 			<div>
 				<Breadcrumb />
-				<div className="p-4">
-					<Switch>
-						<Route path="/content" component={Content} />
-						<Redirect to="/content" />
-					</Switch>
-				</div>
+				<Switch>
+					<Route path="/content" component={Content} />
+					<Redirect to="/content" />
+				</Switch>
 			</div>
 		);
 	}
@@ -54,12 +52,10 @@ class App extends React.Component<Props, {}> {
 
 	_renderLoggedOut() {
 		return (
-			<div className="p-4">
-				<Switch>
-					<Route path="/login" component={Login} />
-					<Redirect to="/login" />
-				</Switch>
-			</div>
+			<Switch>
+				<Route path="/login" component={Login} />
+				<Redirect to="/login" />
+			</Switch>
 		);
 	}
 }

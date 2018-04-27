@@ -14,9 +14,15 @@ class Content extends React.Component<Props, State> {
         return (
             <div>
                 {console.log('Content', this.props) && false}
-                <h2>Content</h2>
-                {this._renderSubDirs()}
-                <div>{JSON.stringify(this.props.contentPage)}</div>
+                <div className="flex flex-col sm:flex-row">
+                    <div className="w-full sm:w-2/3">
+                        <h2>Content</h2>
+                        <div>{JSON.stringify(this.props.contentPage)}</div>
+                    </div>
+                    <div className="w-full sm:w-1/3 bg-yellow-lightest">
+                        {this._renderSubDirs()}
+                    </div>
+                </div>
             </div>
         );
     }
