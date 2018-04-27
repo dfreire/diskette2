@@ -53,7 +53,9 @@
     "update-user-password": "node out/users/scripts/update-password.js"
   },
   "nodemonConfig": {
-    "watch": ["out/*"],
+    "watch": [
+      "out/*"
+    ],
     "delay": "1000"
   }
 }
