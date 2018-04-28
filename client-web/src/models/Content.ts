@@ -48,9 +48,8 @@ const reducers = {
 
 const effects = {
     async onLoad(payload: { pathname: string }, rootState: { content: State, user: UserModel.State }) {
-        const { pathname } = payload;
-        console.log('onLoad pathname', pathname);
         try {
+            const { pathname } = payload;
             const res1 = await axios.get(`/api${pathname}`, {
                 headers: { Authorization: `Bearer ${rootState.user.sessionToken}` },
             });

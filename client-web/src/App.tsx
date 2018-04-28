@@ -2,9 +2,10 @@ import * as React from 'react';
 import { withRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Breadcrumb from './Breadcrumb';
-import Content from './pages/Content';
+import Content from './pages/Content/Content';
 import Login from './pages/Login';
 import * as UserModel from './models/User';
+const { Icon } = require('react-fa');
 
 interface Props extends UserModel.State, UserModel.Dispatch {
 }
@@ -12,11 +13,11 @@ interface Props extends UserModel.State, UserModel.Dispatch {
 class App extends React.Component<Props, {}> {
 	render() {
 		const isLoggedIn = this.props.sessionToken.length > 0;
-		const widthClass = isLoggedIn ? 'max-w-lg' : 'max-w-xs';
+		const widthClass = isLoggedIn ? 'max-w-xl' : 'max-w-xs';
 
 		return (
-			<div className={`container mx-auto bg-white rounded overflow-hidden shadow-lg ${widthClass} font-sans`}>
-				<div className="flex bg-black">
+			<div className={`container mx-auto bg-white rounded shadow-lg ${widthClass} font-sans`}>
+				<div className="flex bg-black rounded-t">
 					<div className="flex-1 text-white p-4"><h2>Diskette</h2></div>
 					{isLoggedIn && this._renderLogout()}
 				</div>
@@ -41,10 +42,10 @@ class App extends React.Component<Props, {}> {
 		return (
 			<div className="">
 				<button
-					className="rounded-bl text-grey hover:bg-grey-darkest hover:text-white font-thin p-2 w-8 font-mono"
+					className="rounded-tr rounded-bl text-grey hover:bg-grey-darkest hover:text-white font-thin p-2 w-8 font-mono"
 					onClick={this.props.logout}
 				>
-					x
+					<Icon name="times" />
 			</button>
 			</div>
 		);

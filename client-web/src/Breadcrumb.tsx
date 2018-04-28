@@ -6,13 +6,14 @@ class Breadcrumb extends React.Component {
         const tokens = window.location.pathname.split('/').filter(t => t.length > 0);
         const links = [{
             to: '/content',
-            component: <Link className="text-black no-underline" to={'/content'}>home</Link>,
+            component: <Link className="text-black no-underline" to={'/content'}>content</Link>,
         }];
 
         for (let i = 1; i < tokens.length; i++) {
-            const previousTo: string = i === 0 ? '' : links[i - 1].to;
-            const to = previousTo + '/' + tokens[i];
-            const component = <Link className="text-black no-underline" to={to}>{tokens[i]}</Link>;
+            const token = tokens[i];
+            const previous = links[i - 1];
+            const to = previous.to + '/' + token;
+            const component = <Link className="text-black no-underline" to={to}>{token}</Link>;
             links.push({ to, component });
         }
 
