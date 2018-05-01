@@ -15,33 +15,54 @@ const Form = (props: Props) => {
     return (
         <div>
             <Tabs titles={props.contentPage.contentType.tabs.map(tab => tab.title)}>
-                {props.contentPage.contentType.tabs.map(tab => {
-                    return <Fields key={tab.title} fields={tab.fields} content={props.contentPage.content} />;
-                })}
+                {props.contentPage.contentType.tabs.map((tab, i) => (
+                    <Tab key={tab.title} {...props} tabIndex={i} />
+                ))}
             </Tabs>
         </div>
     );
 }
 
-const Fields = (props: { fields: Types.Field[]; content: Types.Content }) => {
+interface TabProps extends ContentModel.State, ContentModel.Dispatch {
+    tabIndex: number;
+}
+
+const Tab = (props: TabProps) => {
+    const fieldTypes = props.contentPage.contentType.tabs[props.tabIndex].fields;
+    const fieldValues = props.contentPage.content.fields;
+
     return (
         <div>
-            {props.fields.map(field => <Field key={field.key} field={field} value={props.content.fields[field.key]} />)}
+            {fieldTypes.map(fieldType => {
+                const key = fieldType.key;
+                const value = fieldValues[key];
+                return <Field {...props} key={key} fieldType={fieldType} value={value} />;
+            })}
         </div>
     );
 }
 
-const Field = (props: { field: Types.Field; value: any }) => {
-    switch (props.field.type) {
+interface FieldProps extends ContentModel.State, ContentModel.Dispatch {
+    fieldType: Types.Field;
+    value: any;
+}
+
+const Field = (props: FieldProps) => {
+    const onChange = (value: any) => {
+        console.log(props.fieldType.key, value);
+        props.onContentFieldChange({ key: props.fieldType.key, value });
+    }
+
+    switch (props.fieldType.type) {
         case 'text':
-            return <TextField label={props.field.label} value={props.value} onChange={console.log} />;
+            return <TextField label={props.fieldType.label} value={props.value} onChange={(value) => onChange(value)} />;
         case 'textarea':
-            return <TextAreaField label={props.field.label} value={props.value} onChange={console.log} />;
+            return <TextAreaField label={props.fieldType.label} value={props.value} onChange={(value) => onChange(value)} />;
         default:
             return (
                 <div>
-                    <h1>{props.field.key}</h1>
-                    <div>{props.field.label}</div>
+                    <h1>{props.fieldType.key}</h1>
+                    <div>{props.fieldType.label}</div>
                     <div>{JSON.stringify(props.value)}</div>
                 </div>
             );
@@ -53,7 +74,7 @@ const mapState = (models: { content: ContentModel.State }) => ({
 });
 
 const mapDispatch = (models: { content: ContentModel.Dispatch }) => ({
-    onLoad: models.content.onLoad,
+    onContentFieldChange: models.content.onContentFieldChange,
 }) as any;
 
 export default connect(mapState, mapDispatch)(Form);

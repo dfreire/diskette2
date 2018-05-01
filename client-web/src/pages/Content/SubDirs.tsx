@@ -10,7 +10,7 @@ interface Props extends ContentModel.State, ContentModel.Dispatch {
 
 const SubDirs = (props: Props) => {
     return (
-        <div className="text-sm md:border-l">
+        <div className="text-sm">
             <div className="py-3 md:px-3">
                 <button className={"w-full bg-green hover:bg-green-light text-white p-3 rounded"}>
                     <Icon name="plus" />
@@ -42,7 +42,6 @@ const mapState = (models: { content: ContentModel.State }) => ({
 });
 
 const mapDispatch = (models: { content: ContentModel.Dispatch }) => ({
-    onLoad: models.content.onLoad,
 }) as any;
 
 export default connect(mapState, mapDispatch)(SubDirs);

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as UserModel from './User';
-import { logoutIf401 } from './util';
 import * as Types from './Types';
+import { logoutIf401 } from './util';
 
 export interface State {
     contentPage: {
@@ -14,6 +14,8 @@ export interface State {
 export interface Dispatch {
     onLoad: { (payload: { pathname: string }): void };
     onLoaded: { (payload: { content: Types.Content, contentType: Types.ContentType }): void };
+
+    onContentFieldChange: { (payload: { key: string; value: any }): void };
 };
 
 const INITIAL_STATE: State = {
@@ -35,6 +37,13 @@ const reducers = {
     onLoaded(state: State, payload: { content: Types.Content, contentType: Types.ContentType }) {
         const { content, contentType } = payload;
         const contentPage = { ...INITIAL_STATE.contentPage, content, contentType };
+        return { ...state, contentPage };
+    },
+
+    onContentFieldChange(state: State, payload: { key: string; value: any }) {
+        const { key, value } = payload;
+        const contentPage = { ...state.contentPage };
+        contentPage.content.fields[key] = value;
         return { ...state, contentPage };
     },
 };
