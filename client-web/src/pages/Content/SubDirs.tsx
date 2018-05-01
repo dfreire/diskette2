@@ -17,16 +17,15 @@ const SubDirs = (props: Props) => {
                 </button>
             </div>
             <ul className="list-reset">
-                {props.contentPage.content.subDirs.map((name, i) => {
-                    const isLast = i === props.contentPage.content.subDirs.length - 1;
-                    return <SubDir key={name} location={props.location} name={name} isLast={isLast} />;
-                })}
+                {props.contentPage.content.subDirs.map((name, i) => (
+                    <SubDir key={name} location={props.location} name={name} />
+                ))}
             </ul>
         </div>
     );
 }
 
-const SubDir = (props: { location: Location; name: string; isLast: boolean }) => {
+const SubDir = (props: { location: Location; name: string; }) => {
     const to = [props.location.pathname, props.name].join('/');
 
     return (

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import * as ContentModel from '../../models/Content';
+import Form from './Form';
 import SubDirs from './SubDirs';
 
 interface Props extends ContentModel.State, ContentModel.Dispatch {
@@ -12,15 +13,12 @@ interface State { };
 class Content extends React.Component<Props, State> {
     render() {
         return (
-            <div>
-                <div className="flex flex-col md:flex-row">
-                    <div className="w-full md:w-2/3 p-4">
-                        <h2>Content</h2>
-                        <div>{JSON.stringify(this.props.contentPage)}</div>
-                    </div>
-                    <div className="w-full md:w-1/3 p-4">
-                        <SubDirs {...this.props} />
-                    </div>
+            <div className="flex flex-col md:flex-row">
+                <div className="w-full md:w-2/3 p-4">
+                    <Form {...this.props} />
+                </div>
+                <div className="w-full md:w-1/3 p-4">
+                    <SubDirs {...this.props} />
                 </div>
             </div>
         );

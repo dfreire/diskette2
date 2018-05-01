@@ -1,28 +1,19 @@
 import axios from 'axios';
 import * as UserModel from './User';
 import { logoutIf401 } from './util';
+import * as Types from './Types';
 
 export interface State {
     contentPage: {
-        content: Content;
-        contentType: ContentType;
+        content: Types.Content;
+        contentType: Types.ContentType;
         errorMessage: string;
     };
 }
 
-interface Content {
-    type: string;
-    fields: object;
-    subDirs: string[];
-}
-
-interface ContentType {
-
-}
-
 export interface Dispatch {
     onLoad: { (payload: { pathname: string }): void };
-    onLoaded: { (payload: { content: Content, contentType: ContentType }): void };
+    onLoaded: { (payload: { content: Types.Content, contentType: Types.ContentType }): void };
 };
 
 const INITIAL_STATE: State = {
@@ -33,13 +24,15 @@ const INITIAL_STATE: State = {
             subDirs: [],
         },
         contentType: {
+            title: '',
+            tabs: [],
         },
         errorMessage: '',
     }
 };
 
 const reducers = {
-    onLoaded(state: State, payload: { content: Content, contentType: ContentType }) {
+    onLoaded(state: State, payload: { content: Types.Content, contentType: Types.ContentType }) {
         const { content, contentType } = payload;
         const contentPage = { ...INITIAL_STATE.contentPage, content, contentType };
         return { ...state, contentPage };
