@@ -9,13 +9,10 @@ interface Props extends ContentModel.State, ContentModel.Dispatch {
 }
 
 const SubDirs = (props: Props) => {
-    const hasSubDirs = props.contentPage.content.subDirs.length > 0;
-    const roundedBottom = hasSubDirs ? '' : 'rounded-b';
-
     return (
-        <div className="text-sm">
-            <div className="">
-                <button className={`w-full bg-green hover:bg-green-light text-white p-3 rounded-tl rounded-tr ${roundedBottom}`}>
+        <div className="text-sm md:border-l">
+            <div className="py-3 md:px-3">
+                <button className={"w-full bg-green hover:bg-green-light text-white p-3 rounded"}>
                     <Icon name="plus" />
                 </button>
             </div>
@@ -32,13 +29,11 @@ const SubDirs = (props: Props) => {
 const SubDir = (props: { location: Location; name: string; isLast: boolean }) => {
     const to = [props.location.pathname, props.name].join('/');
 
-    const roundedBottom = props.isLast ? 'rounded-b' : '';
-
     return (
-        <li className={`group flex bg-black hover:bg-grey-darkest border-b border-grey-darkest ${roundedBottom}`}>
-            <Link to={to} className="flex-1 p-3 text-white no-underline truncate" title={props.name}>{props.name}</Link>
-            <button className="invisible group-hover:visible m-1 mr-0 p-1 text-grey hover:text-white"><Icon name="cog" /></button>
-            <button className="invisible group-hover:visible m-1 mr-3 p-1 text-grey hover:text-white"><Icon name="trash" /></button>
+        <li className={"group flex md:pl-1 bg-white hover:bg-grey-lighter"}>
+            <Link to={to} className="flex-1 p-3 text-grey-darker hover:text-black no-underline truncate" title={props.name}>{props.name}</Link>
+            <button className="invisible group-hover:visible m-1 mr-0 p-1 text-grey hover:text-black"><Icon name="cog" /></button>
+            <button className="invisible group-hover:visible m-1 mr-3 p-1 text-grey hover:text-black"><Icon name="trash" /></button>
         </li>
     );
 }
