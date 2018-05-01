@@ -33,4 +33,6 @@ export interface TextAreaField extends Field {
 export interface ImageField extends Field {
     type: 'image';
     value: string;
+    width: number;
+    height: number;
 }

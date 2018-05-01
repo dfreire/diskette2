@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import * as queryString from 'query-string';
 import * as ContentModel from '../../models/Content';
 import * as Types from '../../models/Types';
 import Tabs from '../../components/Tabs';
@@ -11,7 +12,7 @@ interface Props extends ContentModel.State, ContentModel.Dispatch {
     location: Location;
 }
 
-const Form = (props: Props) => {    
+const Form = (props: Props) => {
     return (
         <div>
             <Tabs titles={props.contentPage.contentType.tabs.map(tab => tab.title)}>
@@ -71,10 +72,13 @@ const Field = (props: FieldProps) => {
                 />
             );
         case 'image':
+            const fieldType = props.fieldType as Types.ImageField;
+            const dimensions = { w: fieldType.width, h: fieldType.height };
+            const value = props.value + '?' + queryString.stringify(dimensions)
             return (
                 <ImageField
                     label={props.fieldType.label}
-                    value={props.value}
+                    value={value}
                     pathname={props.location.pathname}
                     onChange={(value) => onChange(value)}
                 />

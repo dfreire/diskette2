@@ -10,6 +10,7 @@ interface Props {
 const ImageField = (props: Props) => {
     const tokens = props.pathname.split('/').filter(t => t.length > 0);
     tokens[0] = 'files';
+
     const src = ['/api', ...tokens, props.value].join('/');
     return (
         <div className={classNames.field}>
