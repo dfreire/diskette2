@@ -17,7 +17,7 @@ export interface Tab {
 export interface Field {
     label: string;
     key: string;
-    type: 'text' | 'textarea';
+    type: 'text' | 'textarea' | 'image';
 }
 
 export interface TextField extends Field {
@@ -27,5 +27,10 @@ export interface TextField extends Field {
 
 export interface TextAreaField extends Field {
     type: 'textarea';
+    value: string;
+}
+
+export interface ImageField extends Field {
+    type: 'image';
     value: string;
 }

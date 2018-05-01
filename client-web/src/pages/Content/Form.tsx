@@ -5,13 +5,15 @@ import * as Types from '../../models/Types';
 import Tabs from '../../components/Tabs';
 import TextField from '../../components/TextField';
 import TextAreaField from '../../components/TextAreaField';
-// const { Icon } = require('react-fa');
+import ImageField from '../../components/ImageField';
 
 interface Props extends ContentModel.State, ContentModel.Dispatch {
     location: Location;
 }
 
 const Form = (props: Props) => {
+    console.log("Form", props.contentPage.content.type);
+    
     return (
         <div>
             <Tabs titles={props.contentPage.contentType.tabs.map(tab => tab.title)}>
@@ -23,7 +25,7 @@ const Form = (props: Props) => {
     );
 }
 
-interface TabProps extends ContentModel.State, ContentModel.Dispatch {
+interface TabProps extends Props {
     tabIndex: number;
 }
 
@@ -42,7 +44,7 @@ const Tab = (props: TabProps) => {
     );
 }
 
-interface FieldProps extends ContentModel.State, ContentModel.Dispatch {
+interface FieldProps extends Props {
     fieldType: Types.Field;
     value: any;
 }
@@ -55,9 +57,30 @@ const Field = (props: FieldProps) => {
 
     switch (props.fieldType.type) {
         case 'text':
-            return <TextField label={props.fieldType.label} value={props.value} onChange={(value) => onChange(value)} />;
+            return (
+                <TextField
+                    label={props.fieldType.label}
+                    value={props.value}
+                    onChange={(value) => onChange(value)}
+                />
+            );
         case 'textarea':
-            return <TextAreaField label={props.fieldType.label} value={props.value} onChange={(value) => onChange(value)} />;
+            return (
+                <TextAreaField
+                    label={props.fieldType.label}
+                    value={props.value}
+                    onChange={(value) => onChange(value)}
+                />
+            );
+        case 'image':
+            return (
+                <ImageField
+                    label={props.fieldType.label}
+                    value={props.value}
+                    pathname={props.location.pathname}
+                    onChange={(value) => onChange(value)}
+                />
+            );
         default:
             return (
                 <div>

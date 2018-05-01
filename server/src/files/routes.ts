@@ -11,6 +11,16 @@ const upload = multer({ dest: config.DK_UPLOAD_DIR });
 
 const router = Router();
 
+router.get('/*', async (req, res) => {
+    try {
+        const pathname = req.params[0];
+        res.sendFile(path.join(config.DK_CONTENT_DIR, pathname));
+    } catch (err) {
+        console.error(err);
+        res.sendStatus(500);
+    }
+});
+
 router.post('/*', authenticate, upload.array('files'), async (req, res) => {
 	const pathname = req.params[0];
 
