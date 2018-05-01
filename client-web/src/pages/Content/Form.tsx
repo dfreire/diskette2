@@ -11,9 +11,7 @@ interface Props extends ContentModel.State, ContentModel.Dispatch {
     location: Location;
 }
 
-const Form = (props: Props) => {
-    console.log("Form", props.contentPage.content.type);
-    
+const Form = (props: Props) => {    
     return (
         <div>
             <Tabs titles={props.contentPage.contentType.tabs.map(tab => tab.title)}>

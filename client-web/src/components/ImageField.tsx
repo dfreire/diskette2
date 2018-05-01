@@ -14,10 +14,7 @@ const ImageField = (props: Props) => {
     return (
         <div className={classNames.field}>
             <label className={classNames.label}>{props.label}</label>
-            <img src={src} alt="" />
-            <p>{src}</p>
-            <p>{props.pathname}</p>
-            <p>{props.value}</p>
+            <img src={src} />
         </div>
     );
 }

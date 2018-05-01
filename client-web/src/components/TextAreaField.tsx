@@ -13,7 +13,7 @@ const TextAreaField = (props: Props) => (
             className={classNames.textarea}
             value={props.value}
             onChange={evt => props.onChange(evt.target.value)}
-            rows={15}
+            rows={10}
         />
     </div>
 );

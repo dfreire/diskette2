@@ -12,6 +12,8 @@ export interface State {
 }
 
 export interface Dispatch {
+    onLoading: { (): void };
+
     onLoad: { (payload: { pathname: string }): void };
     onLoaded: { (payload: { content: Types.Content, contentType: Types.ContentType }): void };
 
@@ -30,10 +32,15 @@ const INITIAL_STATE: State = {
             tabs: [],
         },
         errorMessage: '',
-    }
+    },
 };
 
 const reducers = {
+    onLoading(state: State) {
+        const contentPage = { ...INITIAL_STATE.contentPage };
+        return { ...state, contentPage };
+    },
+
     onLoaded(state: State, payload: { content: Types.Content, contentType: Types.ContentType }) {
         const { content, contentType } = payload;
         const contentPage = { ...INITIAL_STATE.contentPage, content, contentType };
