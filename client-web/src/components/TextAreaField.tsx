@@ -10,10 +10,10 @@ const TextAreaField = (props: Props) => (
     <div className={classNames.field}>
         <label className={classNames.label}>{props.label}</label>
         <textarea
-            className={classNames.input}
+            className={classNames.textarea}
             value={props.value}
             onChange={evt => props.onChange(evt.target.value)}
-            rows={20}
+            rows={15}
         />
     </div>
 );
@@ -21,7 +21,7 @@ const TextAreaField = (props: Props) => (
 const classNames = {
     field: "w-full py-2",
     label: "block pb-2 text-grey-darkest font-medium",
-    input: "block p-2 w-full border rounded",
+    textarea: "block p-2 w-full border rounded leading-normal",
 }
 
 export default TextAreaField;

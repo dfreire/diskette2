@@ -11,7 +11,7 @@ interface Props extends ContentModel.State, ContentModel.Dispatch {
 const SubDirs = (props: Props) => {
     return (
         <div className="text-sm">
-            <div className="py-3 md:px-3">
+            <div className="p-2 md:px-3">
                 <button className={"w-full bg-green hover:bg-green-light text-white p-3 rounded"}>
                     <Icon name="plus" />
                 </button>
