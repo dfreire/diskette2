@@ -9,6 +9,7 @@ interface Config {
     DK_CONTENT_DIR: string;
     DK_CONTENT_TYPES_DIR: string;
     DK_UPLOAD_DIR: string;
+    DK_CACHE_DIR: string;
 }
 
 function _parseBoolean(value: any) {
