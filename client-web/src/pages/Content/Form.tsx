@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as ContentModel from '../../models/Content';
 import * as Types from '../../models/Types';
 import Tabs from '../../components/Tabs';
+import TextField from '../../components/TextField';
 // const { Icon } = require('react-fa');
 
 interface Props extends ContentModel.State, ContentModel.Dispatch {
@@ -14,7 +15,7 @@ const Form = (props: Props) => {
         <div>
             <Tabs titles={props.contentPage.contentType.tabs.map(tab => tab.title)}>
                 {props.contentPage.contentType.tabs.map(tab => {
-                    return <Fields fields={tab.fields} content={props.contentPage.content} />;
+                    return <Fields key={tab.title} fields={tab.fields} content={props.contentPage.content} />;
                 })}
             </Tabs>
         </div>
@@ -24,19 +25,26 @@ const Form = (props: Props) => {
 const Fields = (props: { fields: Types.Field[]; content: Types.Content }) => {
     return (
         <div>
-            {props.fields.map(field => <Field field={field} value={props.content.fields[field.key]} />)}
+            {props.fields.map(field => <Field key={field.key} field={field} value={props.content.fields[field.key]} />)}
         </div>
     );
 }
 
 const Field = (props: { field: Types.Field; value: any }) => {
-    return (
-        <div>
-            <h1>{props.field.key}</h1>
-            <div>{props.field.label}</div>
-            <div>{JSON.stringify(props.value)}</div>
-        </div>
-    );
+    switch (props.field.type) {
+        case 'text':
+            return <TextField label={props.field.label} value={props.value} onChange={console.log} />;
+        case 'textarea':
+            return <TextField label={props.field.label} value={props.value} onChange={console.log} />;
+        default:
+            return (
+                <div>
+                    <h1>{props.field.key}</h1>
+                    <div>{props.field.label}</div>
+                    <div>{JSON.stringify(props.value)}</div>
+                </div>
+            );
+    }
 }
 
 const mapState = (models: { content: ContentModel.State }) => ({

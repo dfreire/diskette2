@@ -6,10 +6,10 @@ interface Props {
     onChange: { (value: string): void }
 }
 
-const PasswordField = (props: Props) => (
+const TextField = (props: Props) => (
     <div className={classNames.field}>
         <label className={classNames.label}>{props.label}</label>
-        <input className={classNames.input} type="password" value={props.value} onChange={evt => props.onChange(evt.target.value)} />
+        <input className={classNames.input} type="email" value={props.value} onChange={evt => props.onChange(evt.target.value)} />
     </div>
 );
 
@@ -19,4 +19,4 @@ const classNames = {
     input: "block p-2 w-full border rounded",
 }
 
-export default PasswordField;
+export default TextField;

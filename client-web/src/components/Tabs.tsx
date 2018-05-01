@@ -18,6 +18,7 @@ class Tabs extends React.Component<Props, State> {
             <div>
                 {this.props.titles.map((title, i) => (
                     <Tab
+                        key={title}
                         title={title}
                         active={this.state.activeIndex === i}
                         onClick={(evt) => {

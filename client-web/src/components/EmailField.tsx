@@ -8,7 +8,7 @@ interface Props {
 
 const EmailField = (props: Props) => (
     <div className={classNames.field}>
-        <label className={classNames.label}>Email</label>
+        <label className={classNames.label}>{props.label}</label>
         <input className={classNames.input} type="email" value={props.value} onChange={evt => props.onChange(evt.target.value)} />
     </div>
 );
