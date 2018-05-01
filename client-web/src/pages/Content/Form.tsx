@@ -4,6 +4,7 @@ import * as ContentModel from '../../models/Content';
 import * as Types from '../../models/Types';
 import Tabs from '../../components/Tabs';
 import TextField from '../../components/TextField';
+import TextAreaField from '../../components/TextAreaField';
 // const { Icon } = require('react-fa');
 
 interface Props extends ContentModel.State, ContentModel.Dispatch {
@@ -35,7 +36,7 @@ const Field = (props: { field: Types.Field; value: any }) => {
         case 'text':
             return <TextField label={props.field.label} value={props.value} onChange={console.log} />;
         case 'textarea':
-            return <TextField label={props.field.label} value={props.value} onChange={console.log} />;
+            return <TextAreaField label={props.field.label} value={props.value} onChange={console.log} />;
         default:
             return (
                 <div>
