@@ -29,7 +29,7 @@ const SubDir = (props: { location: Location; name: string; }) => {
     const to = [props.location.pathname, props.name].join('/');
 
     return (
-        <li className={"group flex md:pl-1 bg-white hover:bg-grey-lighter"}>
+        <li className={"group flex md:pl-1 hover:bg-grey-lighter"}>
             <Link to={to} className="flex-1 p-3 text-grey-darker hover:text-black no-underline truncate" title={props.name}>{props.name}</Link>
             <button className="invisible group-hover:visible m-1 mr-0 p-1 text-grey hover:text-black"><Icon name="cog" /></button>
             <button className="invisible group-hover:visible m-1 mr-3 p-1 text-grey hover:text-black"><Icon name="trash" /></button>

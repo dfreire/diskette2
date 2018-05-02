@@ -17,7 +17,7 @@ class Content extends React.Component<Props, State> {
                 <div className="w-full md:w-2/3 p-4">
                     <Form {...this.props} />
                 </div>
-                <div className="w-full md:w-1/3 p-4">
+                <div className="w-full md:w-1/3 p-4 bg-grey-lightest">
                     <SubDirs {...this.props} />
                 </div>
             </div>
